@@ -1,14 +1,17 @@
+import { faAngleRight, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { text } from "stream/consumers";
 import { TaskType } from "types/TaskType";
 
 interface TaskProps{
     task: TaskType,
     active: boolean,
-    onClick: () => void
+    onToggleTask: () => void,
+    onToggleChecked: () => void,
+    checked: boolean
 }
 
-const Task:React.FC<TaskProps> = ({task, active, onClick}) => {
+const Task:React.FC<TaskProps> = ({task, active, onToggleTask, onToggleChecked, checked}) => {
 
     const normalName = (taskName: string) => {
         return  taskName.charAt(0).toUpperCase() + taskName.slice(1).toLowerCase();
@@ -17,16 +20,18 @@ const Task:React.FC<TaskProps> = ({task, active, onClick}) => {
     return (
     <li>
         <div className="flex gap-5 bg-[#F7FBFD] w-[calc(50vw_-_2rem)] px-8 py-3 items-center justify-between">
-            <div className="flex gap-5 cursor-pointer" onClick={onClick}>
-                <svg className={`transition duration-300 w-4 ${active ?"-rotate-90":""}`} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg>
+            <div className="flex gap-5 cursor-pointer items-center" onClick={onToggleTask}>
+                <FontAwesomeIcon className={`transition duration-300 h-6 ${active ?"-rotate-90":""}`} icon={faAngleRight} />
                 <p className="font-bold text-xl">{normalName(task.title)}</p>
             </div>
             <label htmlFor={`checkbox-${task.id}`} className="flex items-center cursor-pointer">
                 <input
+                    checked={checked}
                     type="checkbox"
                     id={`checkbox-${task.id}`}
-                    className="hidden"/>
-                <span className="w-5 h-5 border rounded-none flex items-center justify-center"></span>
+                    className="hidden"
+                    onClick={onToggleChecked}/>
+                <span className={`w-5 h-5 border rounded-[1px] flex items-center justify-center ${checked && "bg-blue-500 border-blue-500 border-4 w-6 h-6"}`}>{checked && <FontAwesomeIcon className="text-white" icon={faCheck} />}</span>
             </label>
         </div>
         {active && 
