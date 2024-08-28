@@ -7,11 +7,16 @@ import initialTasks from "data/data.json";
 
 const TaskList = () => {
     const [tasks, setTasks] = useState<TaskType[]>(initialTasks as TaskType[]);
-    const [activeTaskId, setActiveTaskId] = useState<string|null>(null);
+    const [active, setActive] = useState<string|null>(null);
+    const [opened, setOpened] = useState<string|null>(null);
     const [checked, setChecked] = useState<string[]>([""]);
 
     const toggleTask = (taskId: string) => {
-        setActiveTaskId((prev) => (prev === taskId ? null : taskId));
+        setActive((prev)=>(prev === taskId ? null : taskId))
+     }
+
+     const handleOpened = (taskId:string) => {
+        setOpened((prev)=>(prev === taskId ? null : taskId))
      }
 
      const modifyChecked = (taskId: string) => {
@@ -31,14 +36,20 @@ const TaskList = () => {
             {
                 tasks.map((task)=>{
                     return <Task 
-                    checked={checked.includes(task.id)}
                     task={task}
-                    active={task.id==activeTaskId}
+
+                    checked={checked.includes(task.id)}
+                    active={task.id===active}
+                    opened={task.id===opened}
+
                     onToggleTask={()=>{
                         toggleTask(task.id);
                     }}
                     onToggleChecked={()=>{
                         modifyChecked(task.id);
+                    }}
+                    toggleOpened={()=>{
+                        handleOpened(task.id);
                     }}
                     />
                 })
