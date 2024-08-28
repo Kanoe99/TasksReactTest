@@ -26,7 +26,22 @@
         "title": "Задача 2",
         "text": "Doloribus adipisci quos",
         "completed": false,
-        "subTasks": []
+        "subTasks": [
+            {
+                "id": "2.1",
+                "title": "Задача 2.1",
+                "text": "задача 2.1 текст, voluptate corrupti, vitae dignissimos voluptas autem quae tempora aut eveniet optio hic iste. Blanditiis aperiam illum aut sint quas repellendus ratione adipisci esse, sit doloribus minima cupiditate. Doloribus adipisci quos, necessitatibus officia itaque earum enim officiis amet sequi quibusdam voluptatum voluptate minus esse, illum eaque culpa blanditiis, ex porro ad praesentium consequuntur deleniti velit ipsam. Commodi repellat sed laudantium consequatur officia eum ullam at ea tenetur! Blanditiis aperiam ipsum autem placeat at reiciendis pariatur quam? Maxime cumque commodi ad exercitationem saepe optio corrupti ",
+                "completed": false,
+                "subTasks": []
+            },
+            {
+                "id": "2.2",
+                "title": "Задача 2.2",
+                "text": "задача 2.2 текст libero, voluptate corrupti, vitae dignissimos voluptas autem quae tempora aut eveniet optio hic iste. Blanditiis aperiam illum aut sint quas repellendus ratione adipisci esse, sit doloribus minima cupiditate. Doloribus adipisci quos",
+                "completed": true,
+                "subTasks": []
+            }
+        ]
     },
     {
         "id": "3",
